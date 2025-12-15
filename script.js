@@ -99,4 +99,31 @@
   el.textContent = String(new Date().getFullYear());
 })();
 
+// Simple cookie consent banner
+(function () {
+  const STORAGE_KEY = "mcglinea_cookie_consent";
+  const banner = document.querySelector(".cookie-banner");
+  if (!banner) return;
+
+  const accepted = window.localStorage
+    ? window.localStorage.getItem(STORAGE_KEY) === "true"
+    : false;
+
+  if (!accepted) {
+    banner.classList.add("visible");
+  }
+
+  const button = banner.querySelector("[data-cookie-accept]");
+  if (!button) return;
+
+  button.addEventListener("click", () => {
+    try {
+      window.localStorage && window.localStorage.setItem(STORAGE_KEY, "true");
+    } catch (e) {
+      // ignore storage errors
+    }
+    banner.classList.remove("visible");
+  });
+})();
+
 
