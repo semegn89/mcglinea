@@ -638,6 +638,264 @@ a {
   }
 }
 
+.invoice-form {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+}
+
+.form-required {
+  color: var(--color-danger);
+}
+
+.form-input {
+  border-radius: 10px;
+  border: 1px solid rgba(55, 75, 105, 0.9);
+  background: rgba(5, 9, 16, 0.96);
+  padding: 0.55rem 0.7rem;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  outline: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.75) inset;
+}
+
+.form-input:focus {
+  border-color: rgba(110, 185, 255, 0.95);
+  box-shadow: 0 0 0 1px rgba(110, 185, 255, 0.6), 0 0 0 1px rgba(0, 0, 0, 0.7),
+    0 14px 36px rgba(0, 0, 0, 0.8);
+}
+
+.form-input::placeholder {
+  color: rgba(142, 156, 178, 0.9);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.85rem;
+}
+
+.form-actions {
+  margin-top: 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.form-hint {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.invoice-preview-wrapper {
+  margin-top: 1.2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(46, 61, 84, 0.9);
+  background: radial-gradient(circle at top left, #111827 0, #050811 48%, #020308 100%);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.9);
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.invoice-preview-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.invoice-preview-header h2 {
+  margin: 0;
+}
+
+.invoice-preview-header .btn[disabled] {
+  opacity: 0.55;
+  cursor: default;
+  box-shadow: none;
+}
+
+.invoice-placeholder {
+  margin-top: 0.75rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(8, 12, 22, 0.96);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.invoice-document {
+  margin-top: 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(55, 75, 105, 0.95);
+  background: #f9fafb;
+  color: #111827;
+  padding: 1rem 1rem 1.2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.invoice-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.8rem;
+  margin-bottom: 0.9rem;
+}
+
+.invoice-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.invoice-logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 2px solid #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.invoice-brand-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.invoice-brand-meta {
+  font-size: 0.75rem;
+  color: #4b5563;
+}
+
+.invoice-meta {
+  min-width: 180px;
+  font-size: 0.8rem;
+}
+
+.invoice-meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.invoice-meta-label {
+  color: #6b7280;
+}
+
+.invoice-meta-value {
+  font-weight: 500;
+}
+
+.invoice-parties {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.8rem;
+}
+
+.invoice-party h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+}
+
+.invoice-party-name {
+  font-weight: 600;
+  margin: 0 0 0.15rem;
+}
+
+.invoice-party p {
+  margin: 0;
+}
+
+.invoice-table-section {
+  font-size: 0.85rem;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-table th,
+.invoice-table td {
+  padding: 0.55rem 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.invoice-table th {
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6b7280;
+}
+
+.invoice-table .right {
+  text-align: right;
+}
+
+.total-label {
+  font-weight: 600;
+}
+
+.total-value {
+  font-weight: 600;
+}
+
+.invoice-payments-note {
+  margin-top: 0.9rem;
+  font-size: 0.8rem;
+}
+
+.invoice-payments-note h3 {
+  margin: 0 0 0.3rem;
+  font-size: 0.9rem;
+}
+
+.invoice-payments-note p {
+  margin: 0 0 0.4rem;
+}
+
+.invoice-footnote {
+  color: #4b5563;
+  font-size: 0.78rem;
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .invoice-document {
+    padding: 1.2rem 1.4rem 1.5rem;
+  }
+
+  .invoice-parties {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 640px) {
   .hero {
     padding-top: 4.2rem;

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCG-LINEA S.R.L. — Generate invoice</title>
+    <meta
+      name="description"
+      content="Generate a simple pro-forma invoice for payments to MCG-LINEA S.R.L. by entering your company details and amount."
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MCG-LINEA S.R.L. — Generate invoice" />
+    <meta
+      property="og:description"
+      content="Fill in your billing details and amount to generate a simple invoice for MCG-LINEA S.R.L."
+    />
+    <meta property="og:url" content="https://mcg-linea.example/invoice.html" />
+    <meta property="og:site_name" content="MCG-LINEA S.R.L." />
+    <meta property="og:image" content="/assets/og-image.png" />
+
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="index.html" aria-label="MCG-LINEA S.R.L. home">
+          <img
+            src="assets/logo.png"
+            class="logo-img"
+            alt="MCG-LINEA S.R.L."
+            loading="lazy"
+          />
+        </a>
+        <nav class="main-nav" aria-label="Primary navigation">
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+          <ul class="nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="payments.html#payments">Payments</a></li>
+            <li><a href="invoice.html">Invoice</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero hero-sub" aria-labelledby="invoice-hero-title">
+        <div class="container hero-inner">
+          <div class="hero-content">
+            <h1 id="invoice-hero-title">Generate a simple pro-forma invoice</h1>
+            <p class="hero-subtitle">
+              Enter your billing details and amount in EUR to generate a simple pro-forma
+              invoice for payments to MCG-LINEA S.R.L.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" aria-labelledby="invoice-form-title">
+        <div class="container">
+          <h2 id="invoice-form-title">Invoice details</h2>
+          <p class="section-intro">
+            The form below does not replace a signed contract. It helps you quickly
+            prepare a pro-forma invoice draft based on the agreed terms with MCG-LINEA
+            S.R.L.
+          </p>
+
+          <form class="invoice-form" id="invoice-form">
+            <div class="form-row">
+              <label class="form-label" for="billing-name">
+                Billing name / company<span class="form-required">*</span>
+              </label>
+              <input
+                id="billing-name"
+                name="billingName"
+                type="text"
+                class="form-input"
+                placeholder="Company SRL / Full name"
+                required
+              />
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="billing-vat">
+                VAT / Tax ID
+              </label>
+              <input
+                id="billing-vat"
+                name="billingVat"
+                type="text"
+                class="form-input"
+                placeholder="(optional)"
+              />
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" for="billing-address">
+                Billing address<span class="form-required">*</span>
+              </label>
+              <textarea
+                id="billing-address"
+                name="billingAddress"
+                class="form-input"
+                rows="2"
+                placeholder="Street, building, city, country"
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-row">
+                <label class="form-label" for="billing-country">
+                  Country<span class="form-required">*</span>
+                </label>
+                <input
+                  id="billing-country"
+                  name="billingCountry"
+                  type="text"
+                  class="form-input"
+                  placeholder="e.g. Romania, Germany"
+                  required
+                />
+              </div>
+
+              <div class="form-row">
+                <label class="form-label" for="billing-email">
+                  Contact email
+                </label>
+                <input
+                  id="billing-email"
+                  name="billingEmail"
+                  type="email"
+                  class="form-input"
+                  placeholder="(optional)"
+                />
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-row">
+                <label class="form-label" for="invoice-amount">
+                  Amount (EUR)<span class="form-required">*</span>
+                </label>
+                <input
+                  id="invoice-amount"
+                  name="invoiceAmount"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  class="form-input"
+                  placeholder="e.g. 1500.00"
+                  required
+                />
+              </div>
+
+              <div class="form-row">
+                <label class="form-label" for="invoice-description">
+                  Description<span class="form-required">*</span>
+                </label>
+                <input
+                  id="invoice-description"
+                  name="invoiceDescription"
+                  type="text"
+                  class="form-input"
+                  placeholder="Short description of goods/services"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-row">
+                <label class="form-label" for="invoice-date">
+                  Issue date
+                </label>
+                <input
+                  id="invoice-date"
+                  name="invoiceDate"
+                  type="date"
+                  class="form-input"
+                />
+              </div>
+
+              <div class="form-row">
+                <label class="form-label" for="invoice-due-date">
+                  Due date
+                </label>
+                <input
+                  id="invoice-due-date"
+                  name="invoiceDueDate"
+                  type="date"
+                  class="form-input"
+                />
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn primary">
+                Generate invoice
+              </button>
+              <span class="form-hint">Fields marked with * are required.</span>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section
+        class="section"
+        aria-labelledby="generated-invoice-title"
+        id="invoice-preview-section"
+      >
+        <div class="container">
+          <div class="invoice-preview-wrapper" aria-live="polite">
+            <div class="invoice-preview-header">
+              <h2 id="generated-invoice-title">Invoice preview</h2>
+              <button
+                type="button"
+                class="btn secondary"
+                id="invoice-print-btn"
+                disabled
+              >
+                Print / Save as PDF
+              </button>
+            </div>
+
+            <div class="invoice-placeholder" id="invoice-placeholder">
+              Fill in the form above and click “Generate invoice” to see a formatted
+              invoice preview.
+            </div>
+
+            <article class="invoice-document" id="invoice-document" hidden>
+              <header class="invoice-header">
+                <div class="invoice-brand">
+                  <div class="invoice-logo-mark">MCG</div>
+                  <div>
+                    <div class="invoice-brand-name">MCG-LINEA S.R.L.</div>
+                    <div class="invoice-brand-meta">CUI: 52838400</div>
+                  </div>
+                </div>
+                <div class="invoice-meta">
+                  <div class="invoice-meta-row">
+                    <span class="invoice-meta-label">Invoice No.</span>
+                    <span class="invoice-meta-value" id="invoice-number"></span>
+                  </div>
+                  <div class="invoice-meta-row">
+                    <span class="invoice-meta-label">Issue date</span>
+                    <span class="invoice-meta-value" id="invoice-date-display"></span>
+                  </div>
+                  <div class="invoice-meta-row">
+                    <span class="invoice-meta-label">Due date</span>
+                    <span class="invoice-meta-value" id="invoice-due-date-display"></span>
+                  </div>
+                  <div class="invoice-meta-row">
+                    <span class="invoice-meta-label">Currency</span>
+                    <span class="invoice-meta-value">EUR</span>
+                  </div>
+                </div>
+              </header>
+
+              <section class="invoice-parties">
+                <div class="invoice-party">
+                  <h3>Seller</h3>
+                  <p class="invoice-party-name">MCG-LINEA S.R.L.</p>
+                  <p>Jud. Vaslui, Municipiul Vaslui</p>
+                  <p>Strada Radu Negru, Bl. 274, Sc. C, Ap. B14, Romania</p>
+                  <p>CUI: 52838400</p>
+                  <p>Legal form: SRL (Limited Liability Company)</p>
+                </div>
+                <div class="invoice-party">
+                  <h3>Buyer</h3>
+                  <p class="invoice-party-name" id="buyer-name"></p>
+                  <p id="buyer-address"></p>
+                  <p id="buyer-country"></p>
+                  <p id="buyer-vat"></p>
+                  <p id="buyer-email"></p>
+                </div>
+              </section>
+
+              <section class="invoice-table-section">
+                <table class="invoice-table">
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th class="right">Amount (EUR)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td id="invoice-item-description"></td>
+                      <td class="right" id="invoice-item-amount"></td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td class="right total-label">Total</td>
+                      <td class="right total-value" id="invoice-total-amount"></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </section>
+
+              <section class="invoice-payments-note">
+                <h3>Payment details</h3>
+                <p>
+                  Please use the following banking information when settling this invoice
+                  in EUR:
+                </p>
+                <p>
+                  <strong>Account Holder:</strong> MCG-LINEA S.R.L.<br />
+                  <strong>Bank Name:</strong> Banca Transilvania (BT)<br />
+                  <strong>IBAN:</strong> RO90 BTRLEURCRT0DB7686301<br />
+                  <strong>SWIFT/BIC:</strong> BTRLRO22<br />
+                  <strong>Currency:</strong> EUR<br />
+                  <strong>Payment purpose:</strong> Payment for vehicle parts and accessories per invoice
+                </p>
+                <p class="invoice-footnote">
+                  This document is generated automatically for information purposes and
+                  is based on the details you have entered. Final commercial terms,
+                  including taxes and Incoterms, are governed by your agreement with
+                  MCG-LINEA S.R.L.
+                </p>
+              </section>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-main">
+          <div>© <span id="year"></span> MCG-LINEA S.R.L.</div>
+          <div>CUI: 52838400</div>
+        </div>
+        <div class="footer-links">
+          <a href="#" aria-label="Privacy policy (coming soon)">Privacy</a>
+          <a href="#" aria-label="Terms and conditions (coming soon)">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+      <div class="cookie-banner-inner">
+        <p class="cookie-text">
+          This site uses basic cookies and similar technologies to improve reliability and
+          security. By continuing to browse, you agree to their use.
+        </p>
+        <button type="button" class="btn cookie-accept" data-cookie-accept>
+          Accept
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
+

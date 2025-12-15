@@ -126,4 +126,163 @@
   });
 })();
 
+// Invoice form handling
+(function () {
+  const form = document.getElementById("invoice-form");
+  const invoiceDoc = document.getElementById("invoice-document");
+  const placeholder = document.getElementById("invoice-placeholder");
+  const printBtn = document.getElementById("invoice-print-btn");
+
+  if (!form || !invoiceDoc || !placeholder || !printBtn) {
+    return;
+  }
+
+  function formatAmount(value) {
+    const num = Number(value);
+    if (!isFinite(num)) return "";
+    return num.toFixed(2);
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return "";
+    const date = new Date(dateStr);
+    if (Number.isNaN(date.getTime())) return dateStr;
+    return date.toISOString().slice(0, 10);
+  }
+
+  function generateInvoiceNumber() {
+    const now = new Date();
+    const mm = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
+    const dateStr = `${mm}${dd}`;
+    
+    // Get or increment counter for today
+    const storageKey = `mcglinea_invoice_counter_${dateStr}`;
+    let counter = 1;
+    
+    try {
+      const stored = window.localStorage?.getItem(storageKey);
+      if (stored) {
+        counter = parseInt(stored, 10) + 1;
+      }
+      window.localStorage?.setItem(storageKey, String(counter));
+    } catch (e) {
+      // If storage fails, use timestamp-based fallback
+      counter = Date.now() % 1000;
+    }
+    
+    return `MC${dateStr}-${counter}`;
+  }
+
+  function ensureDefaultDates() {
+    const issueInput = document.getElementById("invoice-date");
+    const dueInput = document.getElementById("invoice-due-date");
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+
+    if (issueInput && !issueInput.value) {
+      issueInput.value = todayStr;
+    }
+    if (dueInput && !dueInput.value) {
+      const due = new Date(today);
+      due.setDate(due.getDate() + 14);
+      const dyyyy = due.getFullYear();
+      const dmm = String(due.getMonth() + 1).padStart(2, "0");
+      const ddd = String(due.getDate()).padStart(2, "0");
+      dueInput.value = `${dyyyy}-${dmm}-${ddd}`;
+    }
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    ensureDefaultDates();
+
+    const name = /** @type {HTMLInputElement} */ (
+      document.getElementById("billing-name")
+    )?.value.trim();
+    const vat = /** @type {HTMLInputElement} */ (
+      document.getElementById("billing-vat")
+    )?.value.trim();
+    const address = /** @type {HTMLTextAreaElement} */ (
+      document.getElementById("billing-address")
+    )?.value.trim();
+    const country = /** @type {HTMLInputElement} */ (
+      document.getElementById("billing-country")
+    )?.value.trim();
+    const email = /** @type {HTMLInputElement} */ (
+      document.getElementById("billing-email")
+    )?.value.trim();
+    const amountRaw = /** @type {HTMLInputElement} */ (
+      document.getElementById("invoice-amount")
+    )?.value;
+    const description = /** @type {HTMLInputElement} */ (
+      document.getElementById("invoice-description")
+    )?.value.trim();
+    const issueDate = /** @type {HTMLInputElement} */ (
+      document.getElementById("invoice-date")
+    )?.value;
+    const dueDate = /** @type {HTMLInputElement} */ (
+      document.getElementById("invoice-due-date")
+    )?.value;
+
+    const amountFormatted = formatAmount(amountRaw);
+    if (!name || !address || !country || !description || !amountFormatted) {
+      return;
+    }
+
+    const invoiceNumberEl = document.getElementById("invoice-number");
+    const issueDisplayEl = document.getElementById("invoice-date-display");
+    const dueDisplayEl = document.getElementById("invoice-due-date-display");
+    const buyerNameEl = document.getElementById("buyer-name");
+    const buyerAddressEl = document.getElementById("buyer-address");
+    const buyerCountryEl = document.getElementById("buyer-country");
+    const buyerVatEl = document.getElementById("buyer-vat");
+    const buyerEmailEl = document.getElementById("buyer-email");
+    const itemDescEl = document.getElementById("invoice-item-description");
+    const itemAmountEl = document.getElementById("invoice-item-amount");
+    const totalAmountEl = document.getElementById("invoice-total-amount");
+
+    if (
+      !invoiceNumberEl ||
+      !issueDisplayEl ||
+      !dueDisplayEl ||
+      !buyerNameEl ||
+      !buyerAddressEl ||
+      !buyerCountryEl ||
+      !buyerVatEl ||
+      !buyerEmailEl ||
+      !itemDescEl ||
+      !itemAmountEl ||
+      !totalAmountEl
+    ) {
+      return;
+    }
+
+    invoiceNumberEl.textContent = generateInvoiceNumber();
+    issueDisplayEl.textContent = formatDate(issueDate);
+    dueDisplayEl.textContent = formatDate(dueDate);
+
+    buyerNameEl.textContent = name;
+    buyerAddressEl.textContent = address;
+    buyerCountryEl.textContent = country;
+    buyerVatEl.textContent = vat ? `VAT / Tax ID: ${vat}` : "";
+    buyerEmailEl.textContent = email ? `Email: ${email}` : "";
+
+    itemDescEl.textContent = description;
+    itemAmountEl.textContent = amountFormatted;
+    totalAmountEl.textContent = amountFormatted;
+
+    placeholder.hidden = true;
+    invoiceDoc.hidden = false;
+    printBtn.disabled = false;
+  });
+
+  printBtn.addEventListener("click", () => {
+    window.print();
+  });
+})();
+
 
