@@ -1,6 +1,9 @@
 import type { Metadata } from "next"
 import { CatalogGrid } from "@/components/catalog/catalog-grid"
+import { Filters } from "@/components/catalog/filters"
+import { SortSelect } from "@/components/catalog/sort-select"
 import { getProducts } from "@/lib/products"
+import { CatalogPageClient } from "@/components/catalog/catalog-page-client"
 
 export const metadata: Metadata = {
   title: "Catalog",
@@ -18,8 +21,8 @@ export default async function CatalogPage() {
           Browse our extensive selection of {products.length.toLocaleString()}+ vehicle parts and accessories for Mercedes-Benz, BMW, and Audi
         </p>
       </div>
-      <CatalogGrid products={products} limit={24} />
+      
+      <CatalogPageClient initialProducts={products} />
     </div>
   )
 }
-

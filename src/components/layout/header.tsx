@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Search, ShoppingCart, User, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { SearchAutocomplete } from "@/components/search/search-autocomplete"
 import { useState } from "react"
 
 export function Header() {
@@ -57,14 +58,8 @@ export function Header() {
         {/* Search & Actions */}
         <div className="flex items-center gap-2">
           {/* Search */}
-          <div className="relative hidden md:block">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search by SKU, OEM, or name..."
-              className="w-64 pl-9 pr-4"
-              onFocus={() => setSearchOpen(true)}
-            />
+          <div className="relative hidden md:block w-full max-w-md">
+            <SearchAutocomplete />
           </div>
 
           {/* Mobile Search */}
@@ -112,14 +107,7 @@ export function Header() {
       {/* Mobile Search Bar */}
       {searchOpen && (
         <div className="border-t border-border/40 p-4 md:hidden">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search by SKU, OEM, or name..."
-              className="w-full pl-9 pr-4"
-            />
-          </div>
+          <SearchAutocomplete />
         </div>
       )}
 

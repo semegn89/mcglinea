@@ -4,6 +4,7 @@ import "@/styles/globals.css"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { CookieBanner } from "@/components/layout/cookie-banner"
+import { OrganizationSchema } from "@/components/seo/organization-schema"
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -48,6 +49,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <OrganizationSchema />
+      </head>
       <body className="min-h-screen flex flex-col antialiased">
         <Header />
         <main className="flex-1">{children}</main>
