@@ -52,10 +52,10 @@ export function CatalogGrid({ products, limit = 24 }: CatalogGridProps) {
                 {product.name}
               </Link>
             </CardTitle>
-            <CardDescription>
-              <div>SKU: {product.sku}</div>
+            <CardDescription className="space-y-1">
+              <span className="block">SKU: {product.sku}</span>
               {product.oemNumbers && product.oemNumbers.length > 0 && (
-                <div className="text-xs">OEM: {product.oemNumbers[0]}</div>
+                <span className="block text-xs">OEM: {product.oemNumbers[0]}</span>
               )}
             </CardDescription>
           </CardHeader>
