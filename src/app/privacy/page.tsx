@@ -20,7 +20,7 @@ export default function PrivacyPage() {
               </CardHeader>
               <CardContent className="space-y-4 text-muted-foreground">
                 <p>
-                  MCG-LINEA S.R.L. ("we", "us", "our", or "Company") respects your privacy and is
+                  MCG-LINEA S.R.L. (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;, or &ldquo;Company&rdquo;) respects your privacy and is
                   committed to protecting your personal data. This Privacy Policy explains how we
                   collect, use, store, and protect your personal information when you use our website
                   (mcglinea.com) or our services.
@@ -360,7 +360,7 @@ export default function PrivacyPage() {
           <section>
             <Card>
               <CardHeader>
-                <CardTitle>12. Children's Privacy</CardTitle>
+                <CardTitle>12. Children&apos;s Privacy</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-muted-foreground">
                 <p>
@@ -381,7 +381,7 @@ export default function PrivacyPage() {
                 <p>
                   We may update this Privacy Policy from time to time to reflect changes in our
                   practices, services, or legal requirements. We will notify you of material changes
-                  by posting the updated policy on our website and updating the "Last updated" date.
+                  by posting the updated policy on our website and updating the &ldquo;Last updated&rdquo; date.
                 </p>
                 <p>
                   Your continued use of our website or services after changes become effective

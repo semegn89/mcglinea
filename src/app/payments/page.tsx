@@ -84,7 +84,7 @@ export default function PaymentsPage() {
                   as instructed by MCG-LINEA S.R.L.
                 </li>
                 <li>
-                  Any correspondent/intermediary bank fees are subject to your bank's
+                  Any correspondent/intermediary bank fees are subject to your bank&apos;s
                   policies and are not controlled by MCG-LINEA S.R.L.
                 </li>
               </ul>

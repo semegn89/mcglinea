@@ -16,10 +16,13 @@ export function Header() {
       <div className="container flex h-20 items-center justify-between gap-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
-          <img
+          <Image
             src="/assets/logo.png"
             alt="MCG-LINEA S.R.L."
+            width={120}
+            height={120}
             className="h-12 w-auto"
+            priority
           />
         </Link>
 

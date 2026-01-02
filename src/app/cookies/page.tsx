@@ -25,8 +25,8 @@ export default function CookiesPage() {
                   and to provide information to website owners.
                 </p>
                 <p>
-                  Cookies can be "persistent" (they remain on your device until they expire or are
-                  deleted) or "session" cookies (they are deleted when you close your browser).
+                  Cookies can be &ldquo;persistent&rdquo; (they remain on your device until they expire or are
+                  deleted) or &ldquo;session&rdquo; cookies (they are deleted when you close your browser).
                 </p>
                 <p>
                   Our website uses cookies and similar tracking technologies to enhance your browsing
@@ -76,7 +76,7 @@ export default function CookiesPage() {
                     <p>
                       These cookies help us understand how visitors interact with our website by
                       collecting and reporting information anonymously. This helps us improve our
-                      website's performance and user experience.
+                      website&apos;s performance and user experience.
                     </p>
                     <ul className="ml-6 mt-2 list-disc space-y-1">
                       <li>Page views and navigation patterns</li>
@@ -292,7 +292,7 @@ export default function CookiesPage() {
               </CardHeader>
               <CardContent className="space-y-4 text-muted-foreground">
                 <p>
-                  Some browsers include a "Do Not Track" (DNT) feature that signals to websites you
+                  Some browsers include a &ldquo;Do Not Track&rdquo; (DNT) feature that signals to websites you
                   visit that you do not want to have your online activity tracked. Currently, there is
                   no standard for how DNT signals should be interpreted, and our website does not
                   currently respond to DNT signals.
@@ -314,7 +314,7 @@ export default function CookiesPage() {
                 <p>
                   We may update this Cookie Policy from time to time to reflect changes in our
                   cookie practices, technology, or legal requirements. We will notify you of material
-                  changes by posting the updated policy on our website and updating the "Last updated"
+                  changes by posting the updated policy on our website and updating the &ldquo;Last updated&rdquo;
                   date.
                 </p>
                 <p>

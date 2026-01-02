@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 // Placeholder data - will be replaced with real data fetching
 const mockProducts = [
@@ -43,10 +44,11 @@ export function CatalogGrid() {
         <Card key={product.id} className="group flex flex-col border-border/40 transition-shadow hover:shadow-lg">
           <Link href={`/product/${product.slug}`}>
             <div className="relative aspect-square w-full overflow-hidden rounded-t-xl bg-muted">
-              <img
+              <Image
                 src={product.image}
                 alt={product.name}
-                className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                fill
+                className="object-cover transition-transform group-hover:scale-105"
               />
               {!product.inStock && (
                 <div className="absolute right-2 top-2 rounded-full bg-destructive px-2 py-1 text-xs font-semibold text-destructive-foreground">

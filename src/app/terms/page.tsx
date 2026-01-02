@@ -20,10 +20,10 @@ export default function TermsPage() {
               </CardHeader>
               <CardContent className="space-y-4 text-muted-foreground">
                 <p>
-                  These Terms and Conditions ("Terms") govern your use of the website and services
+                  These Terms and Conditions (&ldquo;Terms&rdquo;) govern your use of the website and services
                   provided by MCG-LINEA S.R.L., a Romanian limited liability company registered
                   under CUI 52838400, with registered address at Jud. Vaslui, Municipiul Vaslui,
-                  Strada Radu Negru, Bl. 274, Sc. C, Ap. B14, Romania ("Company", "we", "us", or "our").
+                  Strada Radu Negru, Bl. 274, Sc. C, Ap. B14, Romania (&ldquo;Company&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;).
                 </p>
                 <p>
                   By accessing or using our website (mcglinea.com) or placing an order with us, you
