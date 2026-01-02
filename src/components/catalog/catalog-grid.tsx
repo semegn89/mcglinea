@@ -1,51 +1,35 @@
-"use client"
-
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ShoppingCart } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import type { Product } from "@/types"
+import { formatCurrency } from "@/lib/utils"
 
-// Placeholder data - will be replaced with real data fetching
-const mockProducts = [
-  {
-    id: "1",
-    sku: "SKU001",
-    name: "Brake Pad Set",
-    price: 45.99,
-    inStock: true,
-    image: "/assets/parts-closeup.jpg",
-    slug: "brake-pad-set",
-  },
-  {
-    id: "2",
-    sku: "SKU002",
-    name: "Oil Filter",
-    price: 12.50,
-    inStock: true,
-    image: "/assets/parts-closeup.jpg",
-    slug: "oil-filter",
-  },
-  {
-    id: "3",
-    sku: "SKU003",
-    name: "Air Filter",
-    price: 15.00,
-    inStock: false,
-    image: "/assets/parts-closeup.jpg",
-    slug: "air-filter",
-  },
-]
+interface CatalogGridProps {
+  products: Product[]
+  limit?: number
+}
 
-export function CatalogGrid() {
+export function CatalogGrid({ products, limit = 24 }: CatalogGridProps) {
+  const displayedProducts = products.slice(0, limit)
+
+  if (displayedProducts.length === 0) {
+    return (
+      <div className="py-12 text-center">
+        <p className="text-muted-foreground">No products found.</p>
+      </div>
+    )
+  }
+
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {mockProducts.map((product) => (
+      {displayedProducts.map((product) => (
         <Card key={product.id} className="group flex flex-col border-border/40 transition-shadow hover:shadow-lg">
           <Link href={`/product/${product.slug}`}>
             <div className="relative aspect-square w-full overflow-hidden rounded-t-xl bg-muted">
               <Image
-                src={product.image}
+                src={product.images[0] || "/assets/parts-closeup.jpg"}
                 alt={product.name}
                 fill
                 className="object-cover transition-transform group-hover:scale-105"
@@ -53,6 +37,11 @@ export function CatalogGrid() {
               {!product.inStock && (
                 <div className="absolute right-2 top-2 rounded-full bg-destructive px-2 py-1 text-xs font-semibold text-destructive-foreground">
                   Out of Stock
+                </div>
+              )}
+              {product.isOriginal && (
+                <div className="absolute left-2 top-2 rounded-full bg-primary px-2 py-1 text-xs font-semibold text-primary-foreground">
+                  OEM
                 </div>
               )}
             </div>
@@ -63,10 +52,20 @@ export function CatalogGrid() {
                 {product.name}
               </Link>
             </CardTitle>
-            <CardDescription>SKU: {product.sku}</CardDescription>
+            <CardDescription>
+              <div>SKU: {product.sku}</div>
+              {product.oemNumbers && product.oemNumbers.length > 0 && (
+                <div className="text-xs">OEM: {product.oemNumbers[0]}</div>
+              )}
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex-1">
-            <p className="text-2xl font-bold">€{product.price.toFixed(2)}</p>
+            <p className="text-2xl font-bold">{formatCurrency(product.price)}</p>
+            {product.deliveryDays && (
+              <p className="text-sm text-muted-foreground">
+                Delivery: {product.deliveryDays} {product.deliveryDays === 1 ? 'day' : 'days'}
+              </p>
+            )}
           </CardContent>
           <CardFooter className="gap-2">
             <Button asChild className="flex-1" disabled={!product.inStock}>
