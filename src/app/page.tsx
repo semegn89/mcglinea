@@ -1,0 +1,18 @@
+import { HeroSection } from "@/components/home/hero-section"
+import { FeaturesSection } from "@/components/home/features-section"
+import { BrandsSection } from "@/components/home/brands-section"
+import { HowItWorksSection } from "@/components/home/how-it-works-section"
+import { CtaSection } from "@/components/home/cta-section"
+
+export default function HomePage() {
+  return (
+    <>
+      <HeroSection />
+      <FeaturesSection />
+      <BrandsSection />
+      <HowItWorksSection />
+      <CtaSection />
+    </>
+  )
+}
+
