@@ -9,12 +9,13 @@ export const metadata: Metadata = {
   description: "Your order has been confirmed",
 }
 
-export default function CheckoutSuccessPage({
+export default async function CheckoutSuccessPage({
   searchParams,
 }: {
-  searchParams: { order?: string }
+  searchParams: Promise<{ order?: string }>
 }) {
-  const orderNumber = searchParams.order || "N/A"
+  const { order } = await searchParams
+  const orderNumber = order || "N/A"
 
   return (
     <div className="container py-8 md:py-12">

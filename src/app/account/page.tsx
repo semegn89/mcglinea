@@ -15,8 +15,8 @@ export default function AccountPage() {
       <h1 className="mb-8 text-3xl font-bold md:text-4xl">My Account</h1>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card asChild>
-          <Link href="/account/orders" className="block transition-shadow hover:shadow-lg">
+        <Link href="/account/orders" className="block transition-shadow hover:shadow-lg">
+          <Card>
             <CardHeader>
               <Package className="mb-2 h-8 w-8 text-primary" />
               <CardTitle>Orders</CardTitle>
@@ -24,11 +24,11 @@ export default function AccountPage() {
             <CardContent>
               <p className="text-sm text-muted-foreground">View your order history</p>
             </CardContent>
-          </Link>
-        </Card>
+          </Card>
+        </Link>
 
-        <Card asChild>
-          <Link href="/account/profile" className="block transition-shadow hover:shadow-lg">
+        <Link href="/account/profile" className="block transition-shadow hover:shadow-lg">
+          <Card>
             <CardHeader>
               <User className="mb-2 h-8 w-8 text-primary" />
               <CardTitle>Profile</CardTitle>
@@ -36,11 +36,11 @@ export default function AccountPage() {
             <CardContent>
               <p className="text-sm text-muted-foreground">Manage your account information</p>
             </CardContent>
-          </Link>
-        </Card>
+          </Card>
+        </Link>
 
-        <Card asChild>
-          <Link href="/account/addresses" className="block transition-shadow hover:shadow-lg">
+        <Link href="/account/addresses" className="block transition-shadow hover:shadow-lg">
+          <Card>
             <CardHeader>
               <MapPin className="mb-2 h-8 w-8 text-primary" />
               <CardTitle>Addresses</CardTitle>
@@ -48,11 +48,11 @@ export default function AccountPage() {
             <CardContent>
               <p className="text-sm text-muted-foreground">Manage shipping addresses</p>
             </CardContent>
-          </Link>
-        </Card>
+          </Card>
+        </Link>
 
-        <Card asChild>
-          <Link href="/account/invoices" className="block transition-shadow hover:shadow-lg">
+        <Link href="/account/invoices" className="block transition-shadow hover:shadow-lg">
+          <Card>
             <CardHeader>
               <FileText className="mb-2 h-8 w-8 text-primary" />
               <CardTitle>Invoices</CardTitle>
@@ -60,8 +60,8 @@ export default function AccountPage() {
             <CardContent>
               <p className="text-sm text-muted-foreground">Download your invoices</p>
             </CardContent>
-          </Link>
-        </Card>
+          </Card>
+        </Link>
       </div>
     </div>
   )

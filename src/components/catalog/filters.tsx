@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -30,7 +30,7 @@ export function Filters({ products, onFilter }: FiltersProps) {
     typeof p.category === 'string' ? p.category : p.category?.name || ''
   ).filter(Boolean)))
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     let filtered = [...products]
 
     // Brand filter
@@ -74,7 +74,7 @@ export function Filters({ products, onFilter }: FiltersProps) {
     }
 
     onFilter(filtered)
-  }
+  }, [products, selectedBrands, selectedCategories, minPrice, maxPrice, inStockOnly, originalOnly, onFilter])
 
   const clearFilters = () => {
     setSelectedBrands([])
@@ -103,7 +103,7 @@ export function Filters({ products, onFilter }: FiltersProps) {
   // Auto-apply filters when state changes
   useEffect(() => {
     applyFilters()
-  }, [selectedBrands, selectedCategories, minPrice, maxPrice, inStockOnly, originalOnly])
+  }, [selectedBrands, selectedCategories, minPrice, maxPrice, inStockOnly, originalOnly, applyFilters])
 
   return (
     <Card>

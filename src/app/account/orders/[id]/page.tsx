@@ -6,7 +6,8 @@ export const metadata: Metadata = {
   description: "View order details",
 }
 
-export default function OrderDetailsPage({ params }: { params: { id: string } }) {
+export default async function OrderDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  await params
   // In production, load from API/database
   // For now, return not found as this requires client-side localStorage
   notFound()
