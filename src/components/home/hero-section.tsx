@@ -1,24 +1,27 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { FileText, Search } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-background to-muted/40 py-20 md:py-28 lg:py-36">
-      {/* Subtle grid overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
+    <section className="relative overflow-hidden border-b border-border py-20 md:py-28 lg:py-36">
+      {/* Background photo */}
+      <Image
+        src="/assets/hero-warehouse.jpg"
+        alt="Warehouse with vehicle parts"
+        fill
+        className="object-cover"
+        priority
+        quality={85}
       />
+      {/* Dark overlay for text contrast */}
+      <div className="absolute inset-0 bg-background/75" />
 
       <div className="container relative">
         <div className="mx-auto max-w-3xl text-center">
           {/* Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5 text-xs font-medium text-muted-foreground">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/80 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
             EU B2B Wholesale — EUR Settlements
           </div>

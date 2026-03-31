@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { COMPANY, NAV_LINKS } from "@/config/company"
+import { NAV_LINKS } from "@/config/company"
 import { cn } from "@/lib/utils"
 
 export function Header() {
@@ -15,18 +15,6 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="container flex h-16 items-center justify-between gap-4">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex shrink-0 items-center gap-2 font-bold text-foreground hover:opacity-90 transition-opacity"
-          onClick={() => setMobileOpen(false)}
-        >
-          <span className="text-lg tracking-tight">{COMPANY.shortName}</span>
-          <span className="hidden text-xs font-normal text-muted-foreground sm:inline">
-            {COMPANY.legalForm}
-          </span>
-        </Link>
-
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
           {NAV_LINKS.map((link) => (

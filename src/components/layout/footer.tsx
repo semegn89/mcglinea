@@ -24,15 +24,13 @@ export function Footer() {
                 <Mail className="h-3.5 w-3.5 shrink-0" />
                 {COMPANY.contact.salesEmail}
               </a>
-              {COMPANY.contact.phone !== "TODO_REAL_DATA" && (
-                <a
-                  href={`tel:${COMPANY.contact.phone}`}
-                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Phone className="h-3.5 w-3.5 shrink-0" />
-                  {COMPANY.contact.phone}
-                </a>
-              )}
+              <a
+                href={`tel:${COMPANY.contact.phone}`}
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Phone className="h-3.5 w-3.5 shrink-0" />
+                {COMPANY.contact.phone}
+              </a>
             </div>
           </div>
 

@@ -18,7 +18,7 @@ export const COMPANY = {
   contact: {
     email: "office@mcglinea.com",
     salesEmail: "sales@mcglinea.com",
-    phone: "TODO_REAL_DATA",
+    phone: "+40764349013",
     whatsapp: "TODO_REAL_DATA", // optional
   },
   banking: {
