@@ -1,123 +1,116 @@
 import type { Metadata } from "next"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { COMPANY, SITE } from "@/config/company"
 
 export const metadata: Metadata = {
   title: "Delivery & Returns",
-  description: "Information about delivery and return policies for MCG-LINEA S.R.L.",
+  description:
+    "Delivery terms, lead times, and returns policy for B2B wholesale orders from MCG-LINEA S.R.L.",
+  alternates: { canonical: `${SITE.url}/delivery-returns` },
 }
 
 export default function DeliveryReturnsPage() {
   return (
-    <div className="container py-8 md:py-12">
-      <div className="mx-auto max-w-4xl">
-        <h1 className="mb-8 text-3xl font-bold md:text-4xl">Delivery & Returns</h1>
-        
-        <div className="space-y-8">
+    <div className="container py-12 md:py-16">
+      <div className="mx-auto max-w-3xl">
+        <h1 className="mb-4 text-3xl font-bold tracking-tight">Delivery &amp; Returns</h1>
+        <p className="mb-10 text-lg text-muted-foreground">
+          All delivery and return conditions for B2B wholesale orders placed with{" "}
+          {COMPANY.name}.
+        </p>
+
+        <div className="space-y-10 text-sm text-muted-foreground leading-relaxed">
+
           <section>
-            <Card>
-              <CardHeader>
-                <CardTitle>Delivery Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4 text-muted-foreground">
-                <p>
-                  We deliver vehicle parts and accessories to business customers across the European
-                  Union and beyond. Delivery terms, methods, and costs are agreed individually for
-                  each order and specified in commercial agreements or order confirmations.
-                </p>
-                <div>
-                  <h3 className="mb-2 font-semibold text-foreground">Standard Delivery</h3>
-                  <ul className="ml-6 list-disc space-y-1">
-                    <li>Delivery times vary based on product availability and destination</li>
-                    <li>In-stock items typically ship within 1-3 business days</li>
-                    <li>Estimated delivery times are provided at checkout</li>
-                    <li>Tracking information is provided for all shipments</li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="mb-2 font-semibold text-foreground">Shipping Methods</h3>
-                  <ul className="ml-6 list-disc space-y-1">
-                    <li>Standard ground shipping (most common)</li>
-                    <li>Express shipping (available for urgent orders)</li>
-                    <li>Freight shipping (for large or heavy items)</li>
-                    <li>International shipping (subject to customs and import regulations)</li>
-                  </ul>
-                </div>
-                <p>
-                  <strong>Note:</strong> Delivery dates are estimates and not guaranteed. We are not
-                  liable for delays caused by factors beyond our reasonable control, including
-                  natural disasters, transportation disruptions, or supplier delays.
-                </p>
-              </CardContent>
-            </Card>
+            <h2 className="mb-4 text-xl font-semibold text-foreground">Delivery Terms</h2>
+            <div className="space-y-3">
+              <p>
+                <strong className="text-foreground">Incoterms:</strong> Delivery terms
+                (EXW, DAP, CIP, CIF, or other Incoterms 2020) are agreed per order and
+                stated in the formal quotation and invoice. No single default Incoterm applies
+                to all orders.
+              </p>
+              <p>
+                <strong className="text-foreground">Lead Times:</strong> Indicative lead
+                times are provided in quotations. Lead times are confirmed at the time of
+                order acceptance based on current stock. We are not liable for delays caused
+                by logistics carriers, customs authorities, or force majeure events.
+              </p>
+              <p>
+                <strong className="text-foreground">Shipment:</strong> Goods are dispatched
+                after cleared payment (unless deferred terms apply). Tracking details are
+                provided upon shipment.
+              </p>
+              <p>
+                <strong className="text-foreground">Geographic Coverage:</strong> We ship to
+                all EU member states and selected non-EU countries. Additional
+                documentation may be required for non-EU destinations (customs declarations,
+                export licences). These requirements are addressed in the quotation.
+              </p>
+            </div>
           </section>
 
           <section>
-            <Card>
-              <CardHeader>
-                <CardTitle>Returns & Warranty</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4 text-muted-foreground">
-                <p>
-                  Return and warranty policies are governed by individual commercial agreements and
-                  applicable Romanian commercial law. Consumer return rights under consumer protection
-                  regulations do not apply to B2B transactions.
-                </p>
-                <div>
-                  <h3 className="mb-2 font-semibold text-foreground">Return Authorization</h3>
-                  <p>
-                    All returns must be authorized in advance. To initiate a return:
-                  </p>
-                  <ol className="ml-6 list-decimal space-y-1">
-                    <li>Contact us within the timeframe specified in your commercial agreement</li>
-                    <li>Provide order number and reason for return</li>
-                    <li>Obtain return authorization and instructions</li>
-                    <li>Ship items back in original packaging when possible</li>
-                  </ol>
-                </div>
-                <div>
-                  <h3 className="mb-2 font-semibold text-foreground">Defective or Non-Conforming Products</h3>
-                  <p>
-                    Products that are defective or do not conform to specifications may be returned
-                    subject to our return authorization process and within the timeframe specified in
-                    your commercial agreement.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="mb-2 font-semibold text-foreground">Warranty</h3>
-                  <p>
-                    Product warranties, if any, are provided by manufacturers and are subject to their
-                    terms and conditions. We facilitate warranty claims but are not responsible for
-                    manufacturer warranties.
-                  </p>
-                </div>
-                <p>
-                  <strong>Important:</strong> Unauthorized returns may be refused or subject to
-                  restocking fees. Please contact us before returning any items.
-                </p>
-              </CardContent>
-            </Card>
+            <h2 className="mb-4 text-xl font-semibold text-foreground">Receiving Goods</h2>
+            <p>
+              Upon receipt, the Buyer must inspect the shipment for visible damage or shortage
+              immediately. Any discrepancy must be noted on the carrier delivery document and
+              reported to us in writing within{" "}
+              <strong className="text-foreground">3 business days</strong> of delivery.
+              Claims submitted after this period may not be accepted.
+            </p>
           </section>
 
           <section>
-            <Card>
-              <CardHeader>
-                <CardTitle>Contact for Delivery & Returns</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4 text-muted-foreground">
-                <p>
-                  For questions about delivery, returns, or warranty claims, please contact us:
-                </p>
-                <p>
-                  Email: <a href="mailto:mcglinea@gmail.com" className="text-primary hover:underline">mcglinea@gmail.com</a>
-                  <br />
-                  Phone: <a href="tel:+4073491244" className="text-primary hover:underline">+40 734 912 44</a>
-                </p>
-              </CardContent>
-            </Card>
+            <h2 className="mb-4 text-xl font-semibold text-foreground">Returns Policy</h2>
+            <div className="space-y-3">
+              <p>
+                <strong className="text-foreground">Eligible Returns:</strong> Returns are
+                accepted only for goods that are:
+              </p>
+              <ul className="list-disc list-inside space-y-1 pl-2">
+                <li>Defective upon delivery (manufacturing fault)</li>
+                <li>Incorrectly supplied (wrong part delivered against agreed specification)</li>
+                <li>Materially non-conforming to the agreed specification</li>
+              </ul>
+              <p>
+                <strong className="text-foreground">Return Authorisation:</strong> All
+                returns require a Return Merchandise Authorisation (RMA) issued by us in
+                writing. Goods returned without prior written authorisation will not be
+                accepted and may be returned at the Buyer&apos;s expense.
+              </p>
+              <p>
+                <strong className="text-foreground">Claim Deadline:</strong> Defect claims
+                must be submitted in writing within{" "}
+                <strong className="text-foreground">14 calendar days</strong> of delivery,
+                accompanied by photographs and a written description.
+              </p>
+              <p>
+                <strong className="text-foreground">Non-Returnable:</strong> Correctly
+                supplied, undamaged goods that match the confirmed order specification are
+                not eligible for return. Goods that have been installed, modified, or
+                damaged after delivery are not eligible.
+              </p>
+              <p>
+                <strong className="text-foreground">Resolution:</strong> Accepted return
+                claims are resolved by replacement, credit note, or partial refund at our
+                discretion, depending on the nature of the issue and parts availability.
+              </p>
+            </div>
           </section>
+
+          <section>
+            <h2 className="mb-4 text-xl font-semibold text-foreground">Contact for Logistics Issues</h2>
+            <p>
+              For delivery queries, damage claims, or return requests, contact us at{" "}
+              <a href={`mailto:${COMPANY.contact.salesEmail}`} className="text-primary hover:underline">
+                {COMPANY.contact.salesEmail}
+              </a>{" "}
+              with your order number and a description of the issue.
+            </p>
+          </section>
+
         </div>
       </div>
     </div>
   )
 }
-

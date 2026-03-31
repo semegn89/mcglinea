@@ -1,8 +1,8 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ShoppingCart } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { FileText, Clock, Tag } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import type { Product } from "@/types"
 import { formatCurrency } from "@/lib/utils"
 
@@ -11,75 +11,102 @@ interface CatalogGridProps {
   limit?: number
 }
 
-export function CatalogGrid({ products, limit = 24 }: CatalogGridProps) {
-  const displayedProducts = products.slice(0, limit)
+export function CatalogGrid({ products, limit = 48 }: CatalogGridProps) {
+  const displayed = products.slice(0, limit)
 
-  if (displayedProducts.length === 0) {
+  if (displayed.length === 0) {
     return (
-      <div className="py-12 text-center">
-        <p className="text-muted-foreground">No products found.</p>
+      <div className="flex flex-col items-center gap-3 rounded-xl border border-border bg-muted/30 py-16 text-center">
+        <Tag className="h-8 w-8 text-muted-foreground/40" />
+        <p className="font-medium">No parts match your filters</p>
+        <p className="text-sm text-muted-foreground">Try adjusting filters or search by OEM number</p>
+        <Button asChild variant="outline" size="sm" className="mt-2">
+          <Link href="/rfq">Submit an OEM Inquiry Instead</Link>
+        </Button>
       </div>
     )
   }
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {displayedProducts.map((product) => (
-        <Card key={product.id} className="group flex flex-col border-border/40 transition-shadow hover:shadow-lg">
-          <Link href={`/product/${product.slug}`}>
-            <div className="relative aspect-square w-full overflow-hidden rounded-t-xl bg-muted">
+    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {displayed.map((product) => (
+        <Card
+          key={product.id}
+          className="group flex flex-col border-border/60 transition-shadow hover:shadow-md"
+        >
+          {/* Image */}
+          <Link href={`/product/${product.slug}`} tabIndex={-1} aria-hidden>
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-xl bg-muted">
               <Image
                 src={product.images[0] || "/assets/parts-closeup.jpg"}
                 alt={product.name}
                 fill
-                className="object-cover transition-transform group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              {!product.inStock && (
-                <div className="absolute right-2 top-2 rounded-full bg-destructive px-2 py-1 text-xs font-semibold text-destructive-foreground">
-                  Out of Stock
-                </div>
-              )}
-              {product.isOriginal && (
-                <div className="absolute left-2 top-2 rounded-full bg-primary px-2 py-1 text-xs font-semibold text-primary-foreground">
-                  OEM
-                </div>
-              )}
+              <div className="absolute left-2 top-2 flex gap-1">
+                {product.isOriginal && (
+                  <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-semibold text-primary-foreground">
+                    OEM
+                  </span>
+                )}
+                {!product.inStock && (
+                  <span className="rounded-full bg-muted/90 px-2 py-0.5 text-[10px] font-medium text-muted-foreground backdrop-blur">
+                    On Request
+                  </span>
+                )}
+              </div>
             </div>
           </Link>
-          <CardHeader>
-            <CardTitle className="line-clamp-2 text-lg">
-              <Link href={`/product/${product.slug}`} className="hover:text-primary">
+
+          <CardHeader className="pb-2">
+            <CardTitle className="line-clamp-2 text-sm font-semibold leading-snug">
+              <Link
+                href={`/product/${product.slug}`}
+                className="hover:text-primary transition-colors"
+              >
                 {product.name}
               </Link>
             </CardTitle>
-            <CardDescription className="space-y-1">
-              <span className="block">SKU: {product.sku}</span>
-              {product.oemNumbers && product.oemNumbers.length > 0 && (
-                <span className="block text-xs">OEM: {product.oemNumbers[0]}</span>
+            <div className="space-y-0.5">
+              <p className="text-xs text-muted-foreground font-mono">SKU: {product.sku}</p>
+              {product.oemNumbers?.[0] && (
+                <p className="text-xs text-muted-foreground font-mono">
+                  OEM: {product.oemNumbers[0]}
+                </p>
               )}
-            </CardDescription>
+            </div>
           </CardHeader>
-          <CardContent className="flex-1">
-            <p className="text-2xl font-bold">{formatCurrency(product.price)}</p>
+
+          <CardContent className="flex-1 pb-3">
+            <p className="text-lg font-bold">
+              {formatCurrency(product.price)}
+              <span className="ml-1 text-xs font-normal text-muted-foreground">/ unit</span>
+            </p>
+            <p className="mt-0.5 text-xs text-muted-foreground italic">
+              Indicative — confirmed in formal quote
+            </p>
             {product.deliveryDays && (
-              <p className="text-sm text-muted-foreground">
-                Delivery: {product.deliveryDays} {product.deliveryDays === 1 ? 'day' : 'days'}
-              </p>
+              <div className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Clock className="h-3 w-3 shrink-0" />
+                Lead time: {product.deliveryDays}{" "}
+                {product.deliveryDays === 1 ? "day" : "days"}
+              </div>
             )}
           </CardContent>
-          <CardFooter className="gap-2">
-            <Button asChild className="flex-1" disabled={!product.inStock}>
-              <Link href={`/product/${product.slug}`}>
-                View Details
-              </Link>
+
+          <CardFooter className="gap-2 pt-0">
+            <Button asChild variant="outline" size="sm" className="flex-1 text-xs">
+              <Link href={`/product/${product.slug}`}>View Details</Link>
             </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              disabled={!product.inStock}
-              aria-label="Add to cart"
-            >
-              <ShoppingCart className="h-4 w-4" />
+            <Button asChild size="sm" className="flex-1 text-xs">
+              <Link
+                href={`/rfq?oem=${encodeURIComponent(product.oemNumbers?.[0] || product.sku)}`}
+                className="flex items-center gap-1"
+              >
+                <FileText className="h-3 w-3" />
+                Quote
+              </Link>
             </Button>
           </CardFooter>
         </Card>
@@ -87,4 +114,3 @@ export function CatalogGrid({ products, limit = 24 }: CatalogGridProps) {
     </div>
   )
 }
-

@@ -1,107 +1,105 @@
 import Link from "next/link"
+import { Mail, Phone } from "lucide-react"
+import { COMPANY, FOOTER_LINKS } from "@/config/company"
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border/40 bg-muted/30">
+    <footer className="border-t border-border bg-muted/30">
       <div className="container py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          {/* Company Info */}
-          <div>
-            <h3 className="mb-4 text-lg font-semibold">MCG-LINEA S.R.L.</h3>
-            <p className="mb-2 text-sm text-muted-foreground">
-              Wholesale trade of vehicle parts and accessories
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand column */}
+          <div className="space-y-4">
+            <p className="text-base font-bold tracking-tight">{COMPANY.name}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Wholesale supplier of vehicle parts and accessories. B2B partnerships,
+              EUR settlements, EU-focused export.
             </p>
-            <p className="text-sm text-muted-foreground">
-              CUI: 52838400
-            </p>
+            <div className="space-y-1.5">
+              <a
+                href={`mailto:${COMPANY.contact.salesEmail}`}
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Mail className="h-3.5 w-3.5 shrink-0" />
+                {COMPANY.contact.salesEmail}
+              </a>
+              {COMPANY.contact.phone !== "TODO_REAL_DATA" && (
+                <a
+                  href={`tel:${COMPANY.contact.phone}`}
+                  className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Phone className="h-3.5 w-3.5 shrink-0" />
+                  {COMPANY.contact.phone}
+                </a>
+              )}
+            </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Company links */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/catalog" className="text-muted-foreground hover:text-primary">
-                  Catalog
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="text-muted-foreground hover:text-primary">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/contacts" className="text-muted-foreground hover:text-primary">
-                  Contacts
-                </Link>
-              </li>
-              <li>
-                <Link href="/delivery-returns" className="text-muted-foreground hover:text-primary">
-                  Delivery & Returns
-                </Link>
-              </li>
+            <p className="mb-4 text-sm font-semibold">Company</p>
+            <ul className="space-y-2">
+              {FOOTER_LINKS.company.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Support */}
+          {/* Catalog links */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Support</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/payments" className="text-muted-foreground hover:text-primary">
-                  Payment Information
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-muted-foreground hover:text-primary">
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="text-muted-foreground hover:text-primary">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/cookies" className="text-muted-foreground hover:text-primary">
-                  Cookie Policy
-                </Link>
-              </li>
+            <p className="mb-4 text-sm font-semibold">Catalog & Inquiries</p>
+            <ul className="space-y-2">
+              {FOOTER_LINKS.catalog.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Legal links */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Contact</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a href="mailto:mcglinea@gmail.com" className="hover:text-primary">
-                  mcglinea@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="tel:+4073491244" className="hover:text-primary">
-                  +40 734 912 44
-                </a>
-              </li>
-              <li>
-                Jud. Vaslui, Municipiul Vaslui
-                <br />
-                Strada Radu Negru, Bl. 274, Sc. C, Ap. B14
-                <br />
-                Romania
-              </li>
+            <p className="mb-4 text-sm font-semibold">Legal</p>
+            <ul className="space-y-2">
+              {FOOTER_LINKS.legal.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
-          <p>© {currentYear} MCG-LINEA S.R.L. All rights reserved.</p>
+        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 sm:flex-row sm:items-center">
+          <p className="text-xs text-muted-foreground">
+            © {year} {COMPANY.name}. All rights reserved.
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Registered in {COMPANY.country}
+            {COMPANY.registrationNumber !== "TODO_REAL_DATA"
+              ? ` · Reg. No. ${COMPANY.registrationNumber}`
+              : ""}
+          </p>
         </div>
       </div>
     </footer>
   )
 }
-

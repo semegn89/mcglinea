@@ -1,73 +1,68 @@
-import { Search, ShoppingCart, FileText, Package } from "lucide-react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { ArrowRight } from "lucide-react"
 
-const steps = [
+const STEPS = [
   {
-    number: "01",
-    icon: Search,
-    title: "Search & Browse",
-    description: "Find the parts you need using our comprehensive catalog, search by SKU, OEM, or VIN",
+    step: "01",
+    title: "Submit Your Inquiry",
+    description:
+      "Send us your OEM numbers, SKUs, part names, or a VIN. Use the Request Quote form or email us directly at sales@mcglinea.com.",
   },
   {
-    number: "02",
-    icon: ShoppingCart,
-    title: "Add to Cart",
-    description: "Select your items, check availability and pricing based on your account tier",
+    step: "02",
+    title: "Receive a Formal Quotation",
+    description:
+      "Within one business day we confirm availability, lead time, unit price (EUR), and MOQ. You get a signed commercial offer.",
   },
   {
-    number: "03",
-    icon: FileText,
-    title: "Place Order",
-    description: "Review your order, provide delivery details, and confirm payment terms",
+    step: "03",
+    title: "Sign & Submit Purchase Order",
+    description:
+      "Review the offer, agree to our Terms & Conditions, and submit your Purchase Order. A pro-forma invoice is then issued.",
   },
   {
-    number: "04",
-    icon: Package,
-    title: "Receive & Install",
-    description: "Track your shipment and receive quality parts ready for installation",
+    step: "04",
+    title: "Payment & Delivery",
+    description:
+      "Settle the invoice by bank transfer (EUR). We arrange shipment upon cleared payment and send tracking details.",
   },
 ]
 
 export function HowItWorksSection() {
   return (
-    <section className="py-20 md:py-32">
+    <section className="border-t border-border bg-muted/30 py-20 md:py-28" id="how-it-works">
       <div className="container">
-        <div className="mb-12 text-center">
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-            How It Works
-          </h2>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Simple, transparent process from search to delivery
+        <div className="mb-12 max-w-xl">
+          <h2 className="mb-3 text-3xl font-bold tracking-tight">How Ordering Works</h2>
+          <p className="text-muted-foreground">
+            A straightforward B2B process — no hidden steps, no retail checkout.
+            Every order is handled professionally from inquiry to delivery.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step) => {
-            const Icon = step.icon
-            return (
-              <Card key={step.number} className="relative border-border/40">
-                <CardHeader>
-                  <div className="mb-4 flex items-center justify-between">
-                    <span className="text-4xl font-bold text-muted-foreground/20">
-                      {step.number}
-                    </span>
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                      <Icon className="h-6 w-6 text-primary" />
-                    </div>
-                  </div>
-                  <CardTitle className="text-xl">{step.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    {step.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            )
-          })}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {STEPS.map((s) => (
+            <div key={s.step} className="relative rounded-xl border border-border bg-card p-6">
+              <div className="mb-4 text-3xl font-bold text-primary/20">{s.step}</div>
+              <h3 className="mb-2 font-semibold">{s.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{s.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <Button asChild>
+            <Link href="/rfq" className="flex items-center gap-2">
+              Start an Inquiry
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/catalog">Browse Catalog First</Link>
+          </Button>
         </div>
       </div>
     </section>
   )
 }
-

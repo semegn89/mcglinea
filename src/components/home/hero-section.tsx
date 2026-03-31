@@ -1,85 +1,63 @@
-"use client"
-
 import Link from "next/link"
-import { Search, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { useState } from "react"
+import { FileText, Search } from "lucide-react"
 
 export function HeroSection() {
-  const [searchQuery, setSearchQuery] = useState("")
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (searchQuery.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(searchQuery.trim())}`
-    }
-  }
-
   return (
-    <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background via-background to-muted/20 py-20 md:py-32">
-      {/* Background Image */}
+    <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-background to-muted/40 py-20 md:py-28 lg:py-36">
+      {/* Subtle grid overlay */}
       <div
-        className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-10"
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: "url('/assets/warehouse-hero.jpg')",
+          backgroundImage:
+            "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
         }}
       />
-      
-      <div className="container">
+
+      <div className="container relative">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="mb-6 text-4xl font-bold tracking-tight text-balance md:text-5xl lg:text-6xl">
-            Wholesale trade of vehicle parts and accessories
+          {/* Badge */}
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted px-4 py-1.5 text-xs font-medium text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+            EU B2B Wholesale — EUR Settlements
+          </div>
+
+          {/* Headline */}
+          <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            Wholesale Vehicle Parts
+            <br />
+            <span className="text-muted-foreground">for Serious Buyers</span>
           </h1>
-          <p className="mb-8 text-lg text-muted-foreground md:text-xl">
-            B2B supply, EU partner onboarding, EUR payments supported
+
+          {/* Sub-headline */}
+          <p className="mx-auto mb-10 max-w-xl text-lg text-muted-foreground">
+            MCG-LINEA S.R.L. supplies distributors, workshops, and fleet operators
+            across the EU. Send your OEM list or request a quote — we respond within one business day.
           </p>
 
-          {/* Search Bar */}
-          <form onSubmit={handleSearch} className="mb-8">
-            <div className="relative mx-auto max-w-2xl">
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search by SKU, OEM number, or product name..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-14 pl-12 pr-32 text-base"
-              />
-              <Button
-                type="submit"
-                size="lg"
-                className="absolute right-2 top-1/2 -translate-y-1/2"
-              >
-                Search
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          </form>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button asChild size="lg">
-              <Link href="/catalog">
-                Browse Catalog
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/contacts">
+          {/* CTAs */}
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button asChild size="lg" className="w-full sm:w-auto">
+              <Link href="/rfq" className="flex items-center gap-2">
+                <FileText className="h-4 w-4" />
                 Request a Quote
               </Link>
             </Button>
+            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+              <Link href="/catalog" className="flex items-center gap-2">
+                <Search className="h-4 w-4" />
+                Browse Catalog
+              </Link>
+            </Button>
           </div>
 
-          {/* Tag */}
-          <div className="mt-12 inline-flex items-center gap-2 rounded-full border border-border/40 bg-muted/50 px-4 py-2 text-sm">
-            <span className="font-semibold text-primary">EU B2B</span>
-            <span className="text-muted-foreground">Vehicle parts & accessories supply</span>
-          </div>
+          {/* Trust line */}
+          <p className="mt-8 text-xs text-muted-foreground">
+            Registered in Romania · EUR invoicing · B2B partner onboarding
+          </p>
         </div>
       </div>
     </section>
   )
 }
-

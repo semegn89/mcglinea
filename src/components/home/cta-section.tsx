@@ -1,30 +1,32 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Mail } from "lucide-react"
+import { FileText, Mail } from "lucide-react"
+import { COMPANY } from "@/config/company"
 
 export function CtaSection() {
   return (
-    <section className="border-y border-border/40 bg-gradient-to-b from-muted/30 to-background py-20 md:py-32">
+    <section className="py-20 md:py-28">
       <div className="container">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-            Ready to Get Started?
+        <div className="rounded-2xl border border-border bg-card px-8 py-14 text-center md:px-16">
+          <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">
+            Ready to Start a Partnership?
           </h2>
-          <p className="mb-8 text-lg text-muted-foreground">
-            Join hundreds of businesses across Europe who trust MCG-LINEA for their vehicle parts supply
+          <p className="mx-auto mb-8 max-w-xl text-muted-foreground">
+            Send us your OEM list, part numbers, or describe what you need. We issue a
+            formal quotation within one business day.
           </p>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild size="lg">
-              <Link href="/catalog">
-                Browse Our Catalog
-                <ArrowRight className="ml-2 h-4 w-4" />
+              <Link href="/rfq" className="flex items-center gap-2">
+                <FileText className="h-4 w-4" />
+                Request a Quote
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="mailto:mcglinea@gmail.com">
-                <Mail className="mr-2 h-4 w-4" />
-                Contact Us
-              </Link>
+            <Button asChild size="lg" variant="outline">
+              <a href={`mailto:${COMPANY.contact.salesEmail}`} className="flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                Email Directly
+              </a>
             </Button>
           </div>
         </div>
@@ -32,4 +34,3 @@ export function CtaSection() {
     </section>
   )
 }
-

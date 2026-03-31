@@ -1,4 +1,5 @@
-// Product types
+// ─── Product ────────────────────────────────────────────────────────────────
+
 export interface Product {
   id: string
   sku: string
@@ -17,8 +18,11 @@ export interface Product {
   inStock: boolean
   stockQuantity?: number
   deliveryDays?: number
+  moq?: number          // minimum order quantity
+  warranty?: string     // e.g. "12 months"
   isOriginal: boolean
   compatibleVehicles?: string[]
+  shippingRegions?: string[]
   createdAt: Date
   updatedAt: Date
 }
@@ -49,118 +53,31 @@ export interface PriceTier {
   price: number
 }
 
-// Cart types
-export interface CartItem {
-  productId: string
-  product?: Product
-  quantity: number
-  price: number
-  selectedPriceTier?: string
-}
+// ─── RFQ (Request for Quote) ─────────────────────────────────────────────────
 
-export interface Cart {
-  items: CartItem[]
-  subtotal: number
-  total: number
-  currency: string
-}
-
-// Order types
-export interface Order {
-  id: string
-  orderNumber: string
-  userId?: string
-  user?: User
-  status: OrderStatus
-  items: OrderItem[]
-  subtotal: number
-  shippingCost: number
-  total: number
-  currency: string
-  shippingAddress: Address
-  billingAddress?: Address
-  paymentMethod: PaymentMethod
-  paymentStatus: PaymentStatus
-  invoiceNumber?: string
-  notes?: string
-  createdAt: Date
-  updatedAt: Date
-}
-
-export interface OrderItem {
-  id: string
-  productId: string
-  product?: Product
-  quantity: number
-  price: number
-  total: number
-}
-
-export type OrderStatus = 
-  | "pending"
-  | "confirmed"
-  | "processing"
-  | "shipped"
-  | "delivered"
-  | "cancelled"
-
-export type PaymentMethod = "bank_transfer" | "stripe" | "paypal"
-export type PaymentStatus = "pending" | "paid" | "failed" | "refunded"
-
-// User types
-export interface User {
-  id: string
-  email: string
-  name?: string
-  phone?: string
-  role: UserRole
-  companyProfile?: CompanyProfile
-  addresses?: Address[]
-  createdAt: Date
-  updatedAt: Date
-}
-
-export type UserRole = "customer" | "b2b" | "admin"
-
-export interface CompanyProfile {
-  id: string
-  userId: string
+export interface RfqFormValues {
   companyName: string
-  vatNumber?: string
-  taxId?: string
-  registrationNumber?: string
-  address?: Address
-  contactPerson?: string
-  priceTier?: string
-}
-
-export interface Address {
-  id: string
-  userId?: string
-  type: "shipping" | "billing" | "both"
-  firstName: string
-  lastName: string
-  company?: string
-  addressLine1: string
-  addressLine2?: string
-  city: string
-  state?: string
-  postalCode: string
-  country: string
+  contactName: string
+  email: string
   phone?: string
-  isDefault?: boolean
+  country: string
+  vatNumber?: string
+  oemSkuList: string        // free-text OEM/SKU list, one per line
+  quantity?: string
+  message?: string
+  // file upload handled separately via FormData
 }
 
-// Search types
-export interface SearchResult {
-  products: Product[]
-  categories: Category[]
-  brands: Brand[]
-  total: number
-  page: number
-  perPage: number
-  totalPages: number
+export interface RfqSubmission extends RfqFormValues {
+  id: string
+  submittedAt: Date
+  source?: string           // e.g. "catalog-page", "product-page", "rfq-page"
+  productSlug?: string      // if submitted from a specific product
 }
+
+export type RfqStatus = "pending" | "reviewed" | "quoted" | "closed"
+
+// ─── Search ──────────────────────────────────────────────────────────────────
 
 export interface SearchFilters {
   category?: string
@@ -172,17 +89,17 @@ export interface SearchFilters {
   deliveryDays?: number
 }
 
-// Invoice types
-export interface Invoice {
-  id: string
-  invoiceNumber: string
-  orderId: string
-  order?: Order
-  issueDate: Date
-  dueDate: Date
+export interface SearchResult {
+  products: Product[]
   total: number
-  currency: string
-  pdfUrl?: string
-  createdAt: Date
+  page: number
+  perPage: number
+  totalPages: number
 }
 
+// ─── SEO / Structured Data ───────────────────────────────────────────────────
+
+export interface BreadcrumbItem {
+  name: string
+  href: string
+}

@@ -1,74 +1,33 @@
 import type { MetadataRoute } from "next"
 import { getProducts } from "@/lib/products"
+import { SITE } from "@/config/company"
+
+const STATIC_PAGES: MetadataRoute.Sitemap = [
+  { url: SITE.url, changeFrequency: "weekly", priority: 1.0 },
+  { url: `${SITE.url}/catalog`, changeFrequency: "weekly", priority: 0.9 },
+  { url: `${SITE.url}/rfq`, changeFrequency: "monthly", priority: 0.9 },
+  { url: `${SITE.url}/about`, changeFrequency: "monthly", priority: 0.7 },
+  { url: `${SITE.url}/contacts`, changeFrequency: "monthly", priority: 0.7 },
+  { url: `${SITE.url}/terms`, changeFrequency: "yearly", priority: 0.3 },
+  { url: `${SITE.url}/privacy`, changeFrequency: "yearly", priority: 0.3 },
+  { url: `${SITE.url}/cookies`, changeFrequency: "yearly", priority: 0.3 },
+  { url: `${SITE.url}/delivery-returns`, changeFrequency: "yearly", priority: 0.4 },
+  // payments page intentionally excluded — non-conversion support page
+]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mcglinea.com"
-  
   const products = await getProducts()
-  
-  const productUrls = products.slice(0, 1000).map((product) => ({
-    url: `${baseUrl}/product/${product.slug}`,
-    lastModified: product.updatedAt,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
+  const now = new Date()
+
+  const productUrls: MetadataRoute.Sitemap = products.slice(0, 500).map((p) => ({
+    url: `${SITE.url}/product/${p.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.6,
   }))
 
   return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/catalog`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contacts`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/payments`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/delivery-returns`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/cookies`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.5,
-    },
+    ...STATIC_PAGES.map((p) => ({ ...p, lastModified: now })),
     ...productUrls,
   ]
 }
-

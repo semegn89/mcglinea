@@ -1,81 +1,129 @@
 import type { Metadata } from "next"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { COMPANY, SITE, BUYER_TYPES } from "@/config/company"
 
 export const metadata: Metadata = {
-  title: "About Us",
-  description: "Learn about MCG-LINEA S.R.L. and our commitment to quality vehicle parts",
+  title: "About MCG-LINEA",
+  description:
+    "MCG-LINEA S.R.L. is a Romanian-registered wholesale supplier of vehicle parts and accessories, serving B2B buyers across the European Union.",
+  alternates: { canonical: `${SITE.url}/about` },
 }
 
 export default function AboutPage() {
   return (
-    <div className="container py-8 md:py-12">
-      <div className="mx-auto max-w-4xl">
-        <h1 className="mb-6 text-3xl font-bold md:text-4xl">About MCG-LINEA S.R.L.</h1>
-        
-        <div className="prose prose-invert max-w-none space-y-8">
-          <section>
-            <h2 className="mb-4 text-2xl font-semibold">Who We Are</h2>
-            <p className="mb-4 text-lg text-muted-foreground">
-              MCG-LINEA S.R.L. specializes in the wholesale trade of vehicle parts and
-              accessories, serving business customers across the EU and beyond.
-            </p>
-            <p className="text-lg text-muted-foreground">
-              We are a registered Romanian limited liability company (SRL) focused on
-              providing reliable sourcing, structured partner onboarding, and compliant
-              cross-border settlements in EUR.
-            </p>
-          </section>
+    <div className="container py-12 md:py-16">
+      <div className="mx-auto max-w-3xl">
+        <h1 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">
+          About {COMPANY.name}
+        </h1>
+        <p className="mb-10 text-lg text-muted-foreground">
+          Wholesale supplier of vehicle parts and accessories. B2B-only. EU-focused.
+        </p>
 
-          <section>
-            <h2 className="mb-4 text-2xl font-semibold">Company Information</h2>
-            <Card>
-              <CardHeader>
-                <CardTitle>Legal Details</CardTitle>
-              </CardHeader>
-              <CardContent className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">Company Name</p>
-                  <p className="text-base">MCG-LINEA S.R.L.</p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">CUI</p>
-                  <p className="text-base">52838400</p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">Legal Form</p>
-                  <p className="text-base">SRL (Limited Liability Company)</p>
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">Director</p>
-                  <p className="text-base">Bogdan Sună</p>
-                </div>
-                <div className="sm:col-span-2">
-                  <p className="text-sm font-medium text-muted-foreground">Registered Address</p>
-                  <p className="text-base">
-                    Jud. Vaslui, Municipiul Vaslui, Strada Radu Negru, Bl. 274, Sc. C, Ap. B14, Romania
-                  </p>
-                </div>
-                <div className="sm:col-span-2">
-                  <p className="text-sm font-medium text-muted-foreground">Legal Basis</p>
-                  <p className="text-base">Applicable Romanian Commercial Law</p>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
+        <section className="mb-10 space-y-4">
+          <h2 className="text-xl font-semibold">Who We Are</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            MCG-LINEA S.R.L. is a Romanian limited liability company specialising in the
+            wholesale trade of vehicle parts and accessories. We operate exclusively in the
+            B2B segment, supplying registered business entities — distributors, workshops,
+            fleet operators, and procurement teams — across the European Union.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Our model is built around formal procurement flows: inquiry → quotation → purchase
+            order → invoice → delivery. Every partnership begins with a signed agreement and
+            VAT verification. We do not sell retail or accept anonymous orders.
+          </p>
+        </section>
 
-          <section>
-            <h2 className="mb-4 text-2xl font-semibold">Our Services</h2>
-            <ul className="list-disc space-y-2 pl-6 text-lg text-muted-foreground">
-              <li>B2B wholesale supply of vehicle parts and accessories</li>
-              <li>Support for EU partner onboarding and documentation</li>
-              <li>Export/import operations, including EUR-denominated settlements</li>
-              <li>Reliable sourcing and quality assurance</li>
-              <li>Compliant cross-border transactions</li>
-            </ul>
-          </section>
+        <section className="mb-10">
+          <h2 className="mb-4 text-xl font-semibold">Legal &amp; Company Details</h2>
+          <div className="rounded-xl border border-border divide-y divide-border">
+            {[
+              { label: "Company Name", value: COMPANY.name },
+              { label: "Legal Form", value: "Society with Limited Liability (S.R.L.)" },
+              { label: "Country of Registration", value: COMPANY.country },
+              {
+                label: "Registration Number",
+                value:
+                  COMPANY.registrationNumber !== "TODO_REAL_DATA"
+                    ? COMPANY.registrationNumber
+                    : "Available on request",
+              },
+              {
+                label: "VAT Number",
+                value:
+                  COMPANY.vatNumber !== "TODO_REAL_DATA"
+                    ? COMPANY.vatNumber
+                    : "Available on request",
+              },
+              { label: "Settlement Currency", value: "EUR (Euro)" },
+              { label: "Website", value: COMPANY.domain },
+              { label: "Business Email", value: COMPANY.contact.salesEmail },
+            ].map((row) => (
+              <div key={row.label} className="flex gap-6 px-5 py-3.5 text-sm">
+                <span className="w-44 shrink-0 font-medium text-muted-foreground">{row.label}</span>
+                <span>{row.value}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-10 space-y-4">
+          <h2 className="text-xl font-semibold">What We Do</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            We source and supply original and OEM-grade vehicle parts across the full spectrum
+            of passenger car and light commercial vehicle components — engine parts, brake
+            systems, suspension, transmission, electrical, filters, cooling, exhaust, and more.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            Our catalog is searchable by OEM number, SKU, brand, and category. For bulk
+            requirements we accept OEM lists of any size and return a formal written quotation
+            within one business day.
+          </p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="mb-4 text-xl font-semibold">Who We Serve</h2>
+          <ul className="space-y-2">
+            {BUYER_TYPES.map((type) => (
+              <li key={type} className="flex items-center gap-3 text-sm text-muted-foreground">
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                {type}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="mb-10 space-y-3">
+          <h2 className="text-xl font-semibold">Geographic Focus</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            We ship to all EU member states. Intra-EU supply is documented for VAT compliance.
+            We also supply selected non-EU countries; applicable Incoterms and customs
+            documentation are agreed per order.
+          </p>
+        </section>
+
+        <div className="rounded-xl border border-border bg-muted/30 px-6 py-6">
+          <p className="font-semibold">Ready to start a partnership?</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Submit your OEM list or part inquiry and we will respond with a formal
+            quotation within one business day.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <a
+              href="/rfq"
+              className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              Request a Quote
+            </a>
+            <a
+              href="/contacts"
+              className="rounded-md border border-border px-4 py-2 text-sm font-medium hover:bg-muted transition-colors"
+            >
+              Contact Us
+            </a>
+          </div>
         </div>
       </div>
     </div>
   )
 }
-
